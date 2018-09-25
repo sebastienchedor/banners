@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>jQuery UI Resizable - Helper</title>
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css"/>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	<style>
+	#resizable { width: 150px; height: 150px; padding: 0em; display: flex; flex-flow: row nowrap; justify-content: center; align-items: center;}
+	#resizable h3 { text-align: center; margin: 0; }
+	.ui-resizable-helper { border: 2px dotted #00F; }
+	</style>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="./script.js"></script>
+    <script>
+    $(function() {
+        $( "#resizable" ).resizable();
+    });
+</script>
+</head>
+<body>
+
+<div id="resizable" class="ui-widget-content">
+    <img id="resizableImage"
+        src="https://lh3.ggpht.com/K1w2_cyLVW7L01Zi9ieW93cDGv9-7gBF11lJ2Z2z8rUJIMQkjrjcMo6TZ_aOIMQeiEDB8fGM=w128"
+    />
+</div>
+
+<script>
+    let set = [
+		{src:"./samples/small.png"},
+		{src:"./samples/medium.png"},
+		{src:"./samples/big.png"},
+		{src:"./samples/building.png"},
+		{src:"./samples/banner.png"}
+	];
+    let is = new imageSet(set);
+    $("#resizable").resize(function () {
+		let imgPosition = document.getElementById("resizableImage");
+        let img = is.selectImage(this, imgPosition);
+		imgPosition.setAttribute("src", img.src);
+		imgPosition.setAttribute("height", img.height);
+		imgPosition.setAttribute("width", img.width);
+    });
+</script>
+
+</body>
+</html>
